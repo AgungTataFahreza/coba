@@ -65,6 +65,16 @@ if (isset($_GET["submit1"])) {
     echo "panjangnya = " . strlen($b);
 }
 //echo date('w');
+// echo $_SERVER['REQUEST_URI'];
+// echo $_SERVER['QUERY_STRING'];
+echo $_SERVER['PHP_SELF'];
 ?>
+<script>
+    var a = '1';
+    for (var i = 0; i < 8; i++) {
+        a = window.btoa(a);
+    }
+    console.log(a);
+</script>
 
 </html>
