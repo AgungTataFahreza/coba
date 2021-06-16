@@ -46,7 +46,7 @@ $wayPoints = ["Uttam Nagar West, New Delhi, Delhi", "Meerut", "Aligarh", "Anupsh
 
         <?php
         foreach ($wayPoints as $wayPoint) {
-            ?>
+        ?>
             <div class="locations-option"><input type="checkbox" name="way_points[]" class="way_points" value="<?php echo $wayPoint; ?>"> <?php echo $wayPoint; ?></div>
         <?php
         }
