@@ -8,5 +8,3 @@ echo $since_start->m . ' months<br>';
 echo $since_start->d . ' days<br>';
 echo $since_start->h . ' hours<br>';
 echo $since_start->i . ' minutes<br>';
-
-// var_dump($stamp);

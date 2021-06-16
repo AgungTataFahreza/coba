@@ -1,99 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+$url1 = "http://localhost/coba/index9.php";
+header("Refresh: 10; URL=$url1");
 
-    <link rel="stylesheet" href="">
+$koneksi = mysqli_connect("localhost", "root", "", "coba");
 
-</head>
+$result = mysqli_query($koneksi, "select * from bus1 where status='0'");
+$cek = mysqli_num_rows($result);
+if ($cek > 0) {
+    echo "berhasil";
+    $data = mysqli_fetch_row($result);
+    var_dump($data);
 
-<body>
-    <form action="" method="post">
-        <input type="checkbox" value="sepak bola" name="checkbox[]">Sepak Bola<br>
-        <input type="checkbox" value="tenis meja" name="checkbox[]">Tenis Meja<br>
-        <input type="checkbox" value="basket" name="checkbox[]">Basket<br>
-        <button type="submit" name="btn">save</button>
-    </form>
-    <script>
-        var arr1 = [{
-            user_id: 1,
-            user_name: "XXXX",
-            location: "India"
-        }, {
-            user_id: 2,
-            user_name: "YYYY",
-            location: "India"
-        }, {
-            user_id: 3,
-            user_name: "ZZZZ",
-            location: "India"
-        }];
+    $post = [
+        'dt' => date("m/d/Y H:i:s"),
+        'lat'   => $data[1],
+        'lon' => $data[2],
+        'dr' => 1111,
+        'spd' => 2222,
+        'id' => '300abae84b984e3096263c2f7de42506',
+    ];
 
-        var arr2 = [{
-            user_id: 1,
-            user_name: "XXXX",
-            location: "United States"
-        }, {
-            user_id: 3,
-            user_name: "ZZZZ",
-            location: "India"
-        }, {
-            user_id: 4,
-            user_name: "AAAA",
-            location: "Germany"
-        }, {
-            user_id: 5,
-            user_name: "BBBB",
-            location: "England"
-        }]
+    $ch = curl_init();
 
-        var keys1 = {};
-        var keys2 = {};
+    curl_setopt($ch, CURLOPT_URL, "http://localhost/neoeta/public/Api/update");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 
-        var inserted = [];
-        var updated = [];
-        var deleted = [];
-
-        arr1.forEach(function(item) {
-            keys1[item.user_id] = item;
-        });
-
-        arr2.forEach(function(item) {
-            keys2[item.user_id] = item;
-        });
-
-        arr1.forEach(function(item) {
-            var obj = keys2[item.user_id]
-            if (!obj) {
-                deleted.push(item);
-            } else {
-                if (obj.username !== item.username || obj.location !== item.location) {
-                    updated.push(item);
-                }
-            }
-        });
-
-        arr2.forEach(function(item) {
-            if (!keys1[item.user_id]) {
-                inserted.push(item);
-            }
-        });
+    //     dt //date
+    // lon //longitude
+    // lat //latitude
+    // dr //direct double
+    // spd //kecepatan
+    // id //
 
 
+    // In real life you should use something like:
+    // curl_setopt($ch, CURLOPT_POSTFIELDS, 
+    //          http_build_query(array('postvar1' => 'value1')));
 
-        document.addEventListener("DOMContentLoaded", function(event) {
-            console.log(arr1);
-            console.log(arr2);
-            console.log(keys1);
-            console.log(keys2);
-            console.log('inserted', inserted);
-            console.log('updated', updated);
-            console.log('deleted', deleted);
-        });
-    </script>
-</body>
+    // Receive server response ...
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-</html>
+    $server_output = curl_exec($ch);
+
+    $id = $data[0];
+    if ($server_output == 'sukses') {
+        $result = mysqli_query($koneksi, "UPDATE bus1 SET status = '1' where id='$id'");
+    }
+    curl_close($ch);
+} else {
+    header("Location: http://localhost/coba/index10.php");
+    die();
+}

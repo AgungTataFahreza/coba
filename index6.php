@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<?php
+$date1 = strtotime(date("Y-m-d H:i:s", strtotime('15/06/2021 17:55:33')));
+$date2 = strtotime(date('Y-m-d H:i:s'));
 
-<body>
-    <img src="https://i.postimg.cc/2yV8Tscs/wallpaperflare-com-wallpaper-3.jpg" alt="">
-</body>
+echo "last time : " . $date1;
+echo "<br>now : " . $date2 . '<br>';
 
-</html>
+echo $date2 - $date1;
