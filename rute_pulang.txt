@@ -1,31 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-</head>
-
-<body>
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</body>
-
-</html>
-
-<?php
-
-$result = json_decode('[
+[
     {
         "lat": 5.57146,
         "lng": 95.37146
@@ -1274,22 +1247,4 @@ $result = json_decode('[
         "lat": 5.55977,
         "lng": 95.3176
     }
-]');
-
-// var_dump($result);
-
-$koneksi = mysqli_connect("localhost", "root", "", "coba");
-
-for ($i = 0; $i < count($result); $i++) {
-    var_dump($result[$i]);
-
-    $now = date("Y-m-d H:i:s");
-    $lat = $result[$i]->lat;
-    $lng = $result[$i]->lng;
-    if (!mysqli_query($koneksi, "INSERT INTO bus2 VALUES(null,'$lat','$lng','0')")) {
-        echo ("Error description: " . $koneksi->error);
-    }
-    echo "<br>";
-}
-
-?>
+]

@@ -10,8 +10,7 @@ $cek = mysqli_num_rows($result);
 if ($cek > 0) {
     // echo "berhasil";
     $data = mysqli_fetch_row($result);
-    var_dump($data);
-    echo "<br><br>";
+    print_r($data);
 
     $post = [
         'dt' => date("m/d/Y H:i:s"),
@@ -52,10 +51,11 @@ if ($cek > 0) {
     if ($server_output == 'sukses') {
         $result = mysqli_query($koneksi, "UPDATE bus1 SET status = '1' where id='$id'");
     } else {
-        echo ("Error description: " . $koneksi->error);
+        print_r(['Error description' => $koneksi->error]);
     }
     curl_close($ch);
 } else {
-    header("Location: http://localhost/coba/index11.php");
-    die();
+    $result = mysqli_query($koneksi, "UPDATE bus1 SET status = '0'");
+    header_remove();
+    header("Location: http://localhost/coba/index10.php");
 }

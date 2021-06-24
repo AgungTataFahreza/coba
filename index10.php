@@ -1,16 +1,16 @@
 <?php
 
 $url1 = "http://localhost/coba/index10.php";
-header("Refresh: 10; URL=$url1");
+header("Refresh: 5; URL=$url1");
 
 $koneksi = mysqli_connect("localhost", "root", "", "coba");
 
-$result = mysqli_query($koneksi, "select * from bus1 where status='1' order by id desc");
+$result = mysqli_query($koneksi, "select * from bus2 where status='0'");
 $cek = mysqli_num_rows($result);
 if ($cek > 0) {
-    echo "berhasil";
+    // echo "berhasil";
     $data = mysqli_fetch_row($result);
-    var_dump($data);
+    print_r($data);
 
     $post = [
         'dt' => date("m/d/Y H:i:s"),
@@ -46,10 +46,13 @@ if ($cek > 0) {
 
     $id = $data[0];
     if ($server_output == 'sukses') {
-        $result = mysqli_query($koneksi, "UPDATE bus1 SET status = '0' where id='$id'");
+        $result = mysqli_query($koneksi, "UPDATE bus2 SET status = '1' where id='$id'");
+    } else {
+        print_r(['Error description' => $koneksi->error]);
     }
     curl_close($ch);
 } else {
+    $result = mysqli_query($koneksi, "UPDATE bus2 SET status = '0'");
+    header_remove();
     header("Location: http://localhost/coba/index9.php");
-    die();
 }
