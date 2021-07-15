@@ -1,10 +1,20 @@
 <?php
-date_default_timezone_set('Asia/Jakarta');
-$start_date = new DateTime('2020-11-18 10:53:51');
-$since_start = $start_date->diff(new DateTime());
-echo $since_start->days . ' days total<br>';
-echo $since_start->y . ' years<br>';
-echo $since_start->m . ' months<br>';
-echo $since_start->d . ' days<br>';
-echo $since_start->h . ' hours<br>';
-echo $since_start->i . ' minutes<br>';
+$array = [
+    '1' => [
+        ['destination' => 'Darussalam', 'bus' => 'tr-01', 'eta' => '12', 'aval' => '12'],
+        ['destination' => 'Darussalam', 'bus' => 'tr-01', 'eta' => '12', 'aval' => '12'],
+        ['destination' => 'Darussalam', 'bus' => 'tr-01', 'eta' => '12', 'aval' => '12'],
+    ],
+    '2' => [
+        ['destination' => 'Darussalam', 'bus' => 'tr-01', 'eta' => '12', 'aval' => '12'],
+        ['destination' => 'Darussalam', 'bus' => 'tr-01', 'eta' => '12', 'aval' => '12'],
+        ['destination' => 'Darussalam', 'bus' => 'tr-01', 'eta' => '12', 'aval' => '12'],
+    ],
+    '3' => [
+        ['destination' => 'Darussalam', 'bus' => 'tr-01', 'eta' => '12', 'aval' => '12'],
+        ['destination' => 'Darussalam', 'bus' => 'tr-01', 'eta' => '12', 'aval' => '12'],
+        ['destination' => 'Darussalam', 'bus' => 'tr-01', 'eta' => '12', 'aval' => '12'],
+    ],
+];
+
+print_r($array);
