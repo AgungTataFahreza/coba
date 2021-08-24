@@ -1,9 +1,15 @@
 
 <?php
-$date1 = strtotime(date("Y-m-d H:i:s", strtotime('15/06/2021 17:55:33')));
-$date2 = strtotime(date('Y-m-d H:i:s'));
+$distance = 200; //db
+$jarak_baru = 210;
+$array_jarak = [1118, 700, 495, 447, 979, 869, 679, 1982, 2045, 925, 723, 913];
+$kondisi = 'pergi';
+$max_jarak = max($array_jarak);
 
-echo "last time : " . $date1;
-echo "<br>now : " . $date2 . '<br>';
-
-echo $date2 - $date1;
+if ($distance > 50 && $jarak_baru > $max_jarak * 2) {
+    if ($kondisi == 'pergi') {
+        $kondisi = 'pulang';
+    } else {
+        $kondisi = 'pergi';
+    }
+}
