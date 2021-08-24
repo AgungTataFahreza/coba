@@ -32,3 +32,10 @@
 </body>
 
 </html>
+
+<?php
+
+$result = array_search(7, [1, 2, 3, 0]);
+var_dump($result);
+
+?>
