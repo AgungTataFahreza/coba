@@ -19,6 +19,7 @@ if ($cek > 0) {
         'dr' => 1111,
         'spd' => 2222,
         'id' => '300abae84b984e3096263c2f7de42506',
+        'name' => 'TR-07',
     ];
 
     // print_r($post);
