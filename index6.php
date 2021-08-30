@@ -1,15 +1,35 @@
-
 <?php
-$distance = 200; //db
-$jarak_baru = 210;
-$array_jarak = [1118, 700, 495, 447, 979, 869, 679, 1982, 2045, 925, 723, 913];
-$kondisi = 'pergi';
-$max_jarak = max($array_jarak);
+$d = mktime(11, 14, 54, 8, 12, 2014);
+$date = date('i', $d);
 
-if ($distance > 50 && $jarak_baru > $max_jarak * 2) {
-    if ($kondisi == 'pergi') {
-        $kondisi = 'pulang';
-    } else {
-        $kondisi = 'pergi';
-    }
-}
+var_dump($date);
+?>
+<script>
+    var table = [{
+            data: 'no',
+            name: 'no'
+        },
+        {
+            data: 'class_name',
+            name: 'class_name'
+        },
+        {
+            data: 'racer_id',
+            name: 'racer_id'
+        },
+        {
+            data: 'name',
+            name: 'name'
+        },
+        {
+            data: 'team',
+            name: 'team'
+        },
+        {
+            data: 'address',
+            name: 'address'
+        },
+    ];
+
+    console.log(table[0].data);
+</script>
