@@ -1,51 +1,69 @@
-<!DOCTYPE html>
-<html>
+<?php
 
-<head>
-    <title>test page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+// Declare and define two dates
+$date1 = strtotime("2018-09-19 22:45:00.123");
+$date2 = strtotime("2018-09-21 10:44:01.998");
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
-    </script>
+// Formulate the Difference between two dates
+$diff = abs($date2 - $date1);
 
-    <script>
-        var count = 0;
 
-        $(document).ready(function() {
-            $(".addCF").click(function() {
+// To get the year divide the resultant date into
+// total seconds in a year (365*60*60*24)
+$years = floor($diff / (365 * 60 * 60 * 24));
 
-                if (count == 0) {
-                    $("#customFields").empty();
-                }
-                $("#customFields").append('<tr valign="top"><th scope="row"><label for="customFieldName">Custom Field</label></th><td><input type="text" class="code" id="customFieldName" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp; <input type="text" class="code" id="customFieldValue" name="customFieldValue[]" value="" placeholder="Input Value" /> &nbsp; <a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
-                count++;
-            });
-            $("#customFields").on('click', '.remCF', function() {
-                $(this).parent().parent().remove();
-            });
-        });
-    </script>
-</head>
 
-<body>
-    <table class="form-table">
-        <thead>
-            <tr valign="top">
-                <th scope="row"><label for="customFieldName">Custom Field</label></th>
-                <td>
-                    <input type="text" class="code" id="customFieldName" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp;
-                    <input type="text" class="code" id="customFieldValue" name="customFieldValue[]" value="" placeholder="Input Value" /> &nbsp;
-                    <a href="javascript:void(0);" class="addCF">Add</a>
-                </td>
-            </tr>
-        </thead>
-        <tbody id="customFields">
-        </tbody>
-    </table>
-</body>
+// To get the month, subtract it with years and
+// divide the resultant date into
+// total seconds in a month (30*60*60*24)
+$months = floor(($diff - $years * 365 * 60 * 60 * 24)
+    / (30 * 60 * 60 * 24));
 
-</html>
+
+// To get the day, subtract it with years and 
+// months and divide the resultant date into
+// total seconds in a days (60*60*24)
+$days = floor(($diff - $years * 365 * 60 * 60 * 24 -
+    $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+
+
+// To get the hour, subtract it with years, 
+// months & seconds and divide the resultant
+// date into total seconds in a hours (60*60)
+$hours = floor(($diff - $years * 365 * 60 * 60 * 24
+    - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24)
+    / (60 * 60));
+
+$hours2 = floor($diff / (60 * 60));
+echo $hours2;
+echo "<br>";
+
+
+// To get the minutes, subtract it with years,
+// months, seconds and hours and divide the 
+// resultant date into total seconds i.e. 60
+$minutes = floor(($diff - $years * 365 * 60 * 60 * 24
+    - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24
+    - $hours * 60 * 60) / 60);
+
+
+// To get the minutes, subtract it with years,
+// months, seconds, hours and minutes 
+$seconds = floor(($diff
+    - $years * 365 * 60 * 60 * 24
+    - $months * 30 * 60 * 60 * 24
+    - $days * 60 * 60 * 24
+    - $hours * 60 * 60
+    - $minutes * 60));
+
+// Print the result
+printf(
+    "%d years, %d months, %d days, %d hours, "
+        . "%d minutes, %d seconds",
+    $years,
+    $months,
+    $days,
+    $hours,
+    $minutes,
+    $seconds
+);

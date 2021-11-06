@@ -1,42 +1,19 @@
-<!doctype html>
-<html lang="en">
+<?php
 
-<head>
-    <meta charset="utf-8">
-    <title>checked demo</title>
-    <style>
-        input,
-        label {
-            line-height: 1.5em;
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-</head>
+function fizzBuzz($number)
+{
+    if ($number % 15 == 0) {
+        return "fizzBuzz";
+    } elseif ($number % 3 == 0) {
+        return "fizz";
+    } elseif ($number % 5 == 0) {
+        return "buzz";
+    } else {
+        return $number;
+    }
+}
 
-<body>
-
-    <form>
-        <div>
-            <input type="radio" class="fruit" name="fruit" value="orange" id="orange">
-            <label for="orange">orange</label>
-        </div>
-        <div>
-            <input type="radio" class="fruit" name="fruit" value="apple" id="apple">
-            <label for="apple">apple</label>
-        </div>
-        <div>
-            <input type="radio" class="fruit" name="fruit" value="banana" id="banana">
-            <label for="banana">banana</label>
-        </div>
-        <div id="log"></div>
-    </form>
-
-    <script>
-        $(".fruit").on("click", function() {
-            $("#log").html($(this).val() + " is checked!");
-        });
-    </script>
-
-</body>
-
-</html>
+for ($i = 0; $i < 100; $i++) {
+    echo fizzBuzz($i);
+    echo "<br>";
+}
