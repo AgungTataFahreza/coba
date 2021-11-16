@@ -1,19 +1,20 @@
 <?php
 
-function fizzBuzz($number)
-{
-    if ($number % 15 == 0) {
-        return "fizzBuzz";
-    } elseif ($number % 3 == 0) {
-        return "fizz";
-    } elseif ($number % 5 == 0) {
-        return "buzz";
-    } else {
-        return $number;
-    }
+$a = false;
+$b = false;
+
+if ($a !== null) {
+    echo "not null";
+} else {
+    echo "null";
 }
 
-for ($i = 0; $i < 100; $i++) {
-    echo fizzBuzz($i);
-    echo "<br>";
-}
+// if ($a) {
+//     echo "true";
+// } else {
+//     if ($a === false) {
+//         echo "false";
+//     } else {
+//         echo "null";
+//     }
+// }
