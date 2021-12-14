@@ -1,20 +1,9 @@
 <?php
 
-$a = false;
-$b = false;
+$a = new stdClass();
 
-if ($a !== null) {
-    echo "not null";
-} else {
-    echo "null";
-}
-
-// if ($a) {
-//     echo "true";
-// } else {
-//     if ($a === false) {
-//         echo "false";
-//     } else {
-//         echo "null";
-//     }
-// }
+$a->new_property = 'foo';
+$a->new_property2 = 'foo2';
+print_r($a);
+unset($a->new_property);
+print_r($a);
